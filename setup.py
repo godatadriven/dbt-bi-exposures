@@ -18,7 +18,6 @@ setup(
     author="Guillermo Sanchez, Jovan Gligorevic",
     author_email="guillermosanchez@godatadriven.com, jovangligorevic@godatadriven.com",
     packages=find_packages("dbt_bi_exposures"),
-    package_dir={"": "dbt_bi_exposures"},
     install_requires=requirements,
     setup_requires=setup_requirements,
     tests_require=tests_requirements,

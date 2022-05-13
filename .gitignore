@@ -2,3 +2,5 @@
 /build
 *dbt_bi_exposures.egg-info
 *dist
+/ignore
+*__pycache__
