@@ -1,7 +1,10 @@
 from setuptools import setup, find_packages
 
 
-requirements = ["dbt-core==1.1.0"]
+requirements = [
+    "dbt-core==1.1.0",
+    "pydantic==1.9.1"
+]
 setup_requirements = ["pytest-runner"]
 tests_requirements = ["pytest==5.4.1"]
 dev_requirements = [
