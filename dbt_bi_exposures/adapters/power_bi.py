@@ -5,28 +5,35 @@ from dbt.contracts.graph.parsed import ParsedExposure
 from dbt.contracts.graph.unparsed import ExposureOwner, ExposureType
 
 from pydantic import BaseModel
-from typing import Union, List, Dict, Optional
-
-class PBIDataset(BaseModel):
-    id: str
-    name: str
-    owner: str
-    onprem_gateway: bool 
+from typing import Union, List, Dict
 
 class PBIDatasetTable(BaseModel):
     name: str
-    description: Optional[str]
-    dataset_id: str
+    description: str = None
 
 class PBIDatasourceConnection(BaseModel):
-    server: Optional[str]
+    server: str = None
     database: str
 
 class PBIDatasource(BaseModel):
     datasource_type: str
     connection_details: PBIDatasourceConnection
     id: str 
-    gateway_id: Optional[str]
+    gateway_id: str = None
+
+class PBIDataset(BaseModel):
+    id: str
+    name: str
+    owner: str
+    onprem_gateway: bool 
+    tables: List[PBIDatasetTable]
+    datasources: List[PBIDatasource]
+
+class PBIDashboard(BaseModel):
+    id: str 
+    name: str 
+    url: str
+    dataset_id: str = None
 
 class PBIAdapter(BaseAdapter):
     
@@ -42,24 +49,28 @@ class PBIAdapter(BaseAdapter):
         """Gets a exposure per dashboard found in the PBI organization"""
         pass
 
-    def _get_dashboards(self) -> List:
+    def _get_dashboards(self) -> List[PBIDashboard]:
         """Uses the get dashboards endpoint"""
         pass
 
-    def _get_datasets(self) -> List:
-        """Uses the get datasets endpoint"""
+    def _get_dataset(self) -> PBIDataset:
+        """Uses the get dataset endpoint"""
         pass
 
-    def _get_dataset_from_dashboard(self, dashboard_id: str) -> PBIDataset:
+    def _get_dataset_from_dashboard(self, dashboard_id: str) -> str:
         """Uses the dashboards gettiles endpoint"""
         pass
 
     def _get_dataset_tables(self, dataset_id: str) -> PBIDatasetTable:
         pass
 
-    def _get_datasources(self, dataset_id: str) -> PBIDatasource:
+    def _get_dataset_datasources(self, dataset_id: str) -> List[PBIDatasource]:
         pass
 
     def _get_gateway_datasources(self, dataset_id: str) -> PBIDatasource:
+        pass
+
+    @staticmethod
+    def _pbi_objects_to_dbt_exposures(dashboard: PBIDashboard, dataset: PBIDataset) -> ParsedExposure:
         pass
 
