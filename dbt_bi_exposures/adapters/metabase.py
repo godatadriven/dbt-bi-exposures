@@ -9,5 +9,5 @@ from typing import List
 
 class MetabaseAdapter(BaseAdapter):
     
-    def get_exposures(self, output_path: str = None) -> List[ParsedExposure]:
+    def get_exposures(self, manifest_path: str, output_path: str = None) -> List[ParsedExposure]:
         pass

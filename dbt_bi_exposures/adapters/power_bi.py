@@ -40,7 +40,7 @@ class PBIAdapter(BaseAdapter):
     def __init__(self, organization: Union[str, List]):
         self.organization = organization
 
-    def get_exposures(self, output_path: str = None) -> List[ParsedExposure]:
+    def get_exposures(self, manifest_path: str, output_path: str = None) -> List[ParsedExposure]:
         dashboards = self._get_dashboards()
         for dashboard in dashboards:
             self._get_exposure(dashboard['id'])

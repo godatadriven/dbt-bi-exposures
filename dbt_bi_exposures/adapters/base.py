@@ -5,7 +5,7 @@ from typing import List
 class BaseAdapter(ABC):
 
     @abstractmethod
-    def get_exposures(self, output_path: str = None) -> List[ParsedExposure]:
+    def get_exposures(self, manifest_path: str, output_path: str = None) -> List[ParsedExposure]:
         """
         Get exposures either in a string-yaml style or in a file
         Params
